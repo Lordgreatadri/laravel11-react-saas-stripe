@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import CoinImage from '@/Components/CoinImage';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
@@ -25,9 +27,27 @@ export default function Authenticated({ user, header, children }) {
                                     Dashboard
                                 </NavLink>
                             </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href={route('feature1.index')} active={route().current('feature1.index')}>
+                                    Addition
+                                </NavLink>
+                            </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink href={route('feature2.index')} active={route().current('feature2.index')}>
+                                Subtraction 
+                                </NavLink>
+                            </div>
                         </div>
 
-                        <div className="hidden sm:flex sm:items-center sm:ms-6">
+                        <div className="hidden sm:flex sm:items-center sm:ms-6 gap-3">
+                            <span className="text-white flex gap-3">
+                                <CoinImage />
+                                {user.available_credits} Credits
+                            </span>
+                            <Link href="/purchase-credit"
+                            className='text-white py-1 px-3 rounded border transition-colors hover:text-gray-800 hover:bg-white'>
+                                Get More
+                            </Link>
                             <div className="ms-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -94,6 +114,18 @@ export default function Authenticated({ user, header, children }) {
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href={route('feature1.index')} active={route().current('feature1.index')}>
+                            Addition
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink href={route('feature2.index')} active={route().current('feature2.index')}>
+                        Subtraction 
                         </ResponsiveNavLink>
                     </div>
 
