@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreditController;
 use App\Http\Controllers\Feature1Controller;
 use App\Http\Controllers\Feature2Controller;
@@ -8,20 +9,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::redirect('/', 'dashboard');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'] )->name('dashboard');
 
     Route::get('/feature1', [Feature1Controller::class, "index"])->name('feature1.index');
     Route::post('/feature1', [Feature1Controller::class, "calculate"])->name('feature1.calculate');

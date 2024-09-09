@@ -10,7 +10,7 @@ use App\Models\User;
 class UsedFeature extends Model
 {
     use HasFactory;
-    protected $fillable = ['credits', 'user_id', 'feature_id', 'used_at'];
+    protected $fillable = ['credits', 'user_id', 'feature_id','data', 'used_at', 'result'];
 
 
     protected function casts() : array {

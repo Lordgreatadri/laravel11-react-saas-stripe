@@ -39,11 +39,12 @@ class Feature1Controller extends Controller
         $data = $request->validate([
             "number1" => ["required", "numeric"],
             "number2" => ["required", "numeric"],
-            // "operator" => ["required", "in:add,subtract,multiply,divide"],
+            // "result" => ["required", "in:add,subtract,multiply,divide"],
         ]);
 
         $number1 = (float) $data["number1"];
         $number2 = (float) $data["number2"];
+        $data['result'] = $number1 + $number2;
 
         $user->decreaseCredits($this->feature->required_credits);
 
@@ -51,6 +52,7 @@ class Feature1Controller extends Controller
             "user_id" => $user->id,
             "feature_id" => $this->feature->id,
             "credits" => $this->feature->required_credits,
+            "result" => $data['result'],
             "data" => $data,
         ]);
 
