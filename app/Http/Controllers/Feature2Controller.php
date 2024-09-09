@@ -43,6 +43,7 @@ class Feature2Controller extends Controller
 
         $number1 = (float) $data["number1"];
         $number2 = (float) $data["number2"];
+        $data['result'] = $number1 - $number2;
 
         $user->decreaseCredits($this->feature->required_credits);
 
@@ -50,6 +51,8 @@ class Feature2Controller extends Controller
             "user_id" => $user->id,
             "feature_id" => $this->feature->id,
             "credits" => $this->feature->required_credits,
+            "result" => $data['result'],
+            "used_at" => now(),
             "data" => $data,
         ]);
 
