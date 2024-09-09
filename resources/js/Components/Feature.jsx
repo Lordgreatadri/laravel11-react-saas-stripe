@@ -38,7 +38,7 @@ export default function Feature({feature, answer, children}) {
                                 <div>
                                     You do not have enough credit to use the feature. Go {""}
                                     
-                                    <Link href="/purchase-credit">
+                                    <Link href={route("credit.index")}>
                                         <a className="font-semibold  text-indigo-500 hover:text-indigo-400 hover:underline">buy credits</a>
                                     </Link>
                                 </div>

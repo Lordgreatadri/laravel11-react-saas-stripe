@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Feature;
 use App\Models\UsedFeature;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class Feature1Controller extends Controller
      */
     public function index()
     {
-        return inertia("Feature1/Index", [
+        return Inertia::render("Feature1/Index", [
             "feature" => new FeatureResource($this->feature),
             "answer"  => session("answer"),
         ]);
